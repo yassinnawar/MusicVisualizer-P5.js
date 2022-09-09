@@ -17,7 +17,7 @@ function Squares(){
           
                 var x = ((c / this.rows) * windowWidth); 
                 var y = windowHeight - (r/this.columns  * windowHeight)
-                var colour = spectrum[floor((r+c)/2)*cellNumber]
+                var colour = spectrum[ceil((r+c)/2)*cellNumber]
                 
                 if(c<2){
                     fill(colour,0,0)

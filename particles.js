@@ -16,10 +16,10 @@ function Particles() {
     this.draw = function() {
         var spectrum = fourier.analyze();
         for (var i = 0; i < this.bins; i++) {
-            var level = map(spectrum[i], 0, 255, 0, 1);
+            var frequency = map(spectrum[i], 0, 255, 0, 3);
 
             // update values based on amplitude at this part of the frequency spectrum
-            this.particles[i].update(level);
+            this.particles[i].update(frequency);
             this.particles[i].draw();
             // update x position (in case we change the bin count while live coding)
             this.particles[i].position.x = map(i, 0, this.bins, 0, windowWidth * 2);

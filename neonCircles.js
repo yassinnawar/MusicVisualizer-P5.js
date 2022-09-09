@@ -15,8 +15,8 @@ function NeonCircles(){
         var magnification = map(amplitude.getLevel(),0,1,0.9,1.1)
         scale(magnification); 
 
-        for(var x=windowWidth+200; x>0;x=x-100){
-            for(var y=windowHeight+200; y>0; y=y-100){
+        for(var x=windowWidth; x>20;x=x-50){
+            for(var y=windowHeight+200; y>0; y=y-75){
                 // transform y to index respective to fourier array
                 let index = map(y,windowHeight,0,0,1024)
                 index = ceil(index);
@@ -27,14 +27,14 @@ function NeonCircles(){
                              
                 // disable coloring when not playing
                 if(spectrum[index]<2){
-                    rY=spectrum[index]%155;
-                    gY=spectrum[index]%180;
+                    rY=spectrum[index]%250;
+                    gY=spectrum[index]%250;
                     bY=spectrum[index]%250;
                     flag = false;
                 }
                 else {
-                    rY=spectrum[index]%155;
-                    gY=spectrum[index]%180;
+                    rY=spectrum[index]%200;
+                    gY=spectrum[index]%100;
                     bY=spectrum[index]%250;
                     
                     rY2=mouseY%155;
@@ -42,8 +42,8 @@ function NeonCircles(){
                     bY2=mouseY%250;
                     
                     // set coloring to be controlled by fourier value and mouseY position
-                    rY3=(rY + rY2) % 155
-                    gY3=(rY + rY2) % 180;
+                    rY3=(rY + rY2) % 200;
+                    gY3=(rY + rY2) % 100;
                     bY3=(rY + rY2) % 250;
                     flag = true;  
                 }
