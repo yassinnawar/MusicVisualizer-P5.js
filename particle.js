@@ -3,11 +3,10 @@ function Particle( position ) {
     this.scale = 1
     this.speed = createVector(0, random(0, 10));
 
-//    this.shape= shape
+    this.shape = shape
     
     //GUI Controls
-    this.color = [random(0, 255), random(0,255), random(0,255),random(0,100)];
-    this.color = [random(0, 255), random(0,255), random(0,255)];
+    this.color = [random(0, 255), random(0,255), random(0,255),random(80,100)];
     var userScale = 0.3;
     
     
@@ -17,12 +16,12 @@ function Particle( position ) {
             this.scale = map(amplitude.getLevel(),0,1,1,5);
             fill(this.color);
     
-//          if(this.shape=="circle"){
+          if(this.shape=="circle"){
                 ellipse(this.position.x, this.position.y,this.diameter, this.diameter);
-//              }
-//          else {
-//              rect(this.position.x, this.position.y,this.diameter, this.diameter);
-//          }
+              }
+          else {
+              rect(this.position.x, this.position.y,this.diameter, this.diameter);
+          }
        
     }
 
@@ -33,9 +32,9 @@ function Particle( position ) {
         this.position.y = 0;
       }
       this.diameter = map(someLevel, 0, 1, 0, 100) * this.scale * userScale;
+        this.shape = shape
     }
 
     
- 
-    
+
 }

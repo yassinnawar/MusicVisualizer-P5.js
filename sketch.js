@@ -26,11 +26,19 @@ var directionMax=1;
 var directionStep=1;
 
 
+var particlesGui;
+var shape = ["circle","square"]
+
+var waveGui;
+
+
+
+
 function preload(){
 // input = createFileInput(handleFile);  
 //    input.size(400,400);
 //    var sound = new SoundFile
-    sound = loadSound('assets/dieforyou.mp3');
+    sound = loadSound('assets/dieforyou2.mp3');
 }
 
 
@@ -41,8 +49,9 @@ function setup(){
     controls = new Controls();
 
     fourier = new p5.FFT();
+    fourier2 = new p5.FFT(0.8,512)
     fourier.setInput(sound)
-    
+    fourier2.setInput(sound)
     amplitude = new p5.Amplitude();
     amplitude.setInput(sound);
     
@@ -59,13 +68,19 @@ function setup(){
     
     
 
-    //create Circle GUI and add globals 
-    circleGui = createGui("Circle Visual GUI");
-    circleGui.addGlobals("myColor","redLevel","greenLevel","blueLevel","direction");
-    //hide at setup
+    //create GUIs and add their globals then hide them upon launch
+    circleGui = createGui("Circle Settings");
+    circleGui.addGlobals("myColor","redLevel","greenLevel","blueLevel","direction"); 
     circleGui.hide();
-    //initial color black 
-//    myColor = 000000;
+    
+    particlesGui = createGui("Particle Settings")
+    particlesGui.addGlobals("shape");
+    particlesGui.hide()
+    
+    waveGui = createGui("Wave Settings")
+    waveGui.addGlobals("redLevel","greenLevel","blueLevel");
+    waveGui.hide();
+    
 
 }
 

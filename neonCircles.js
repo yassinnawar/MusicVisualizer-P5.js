@@ -13,10 +13,15 @@ function NeonCircles(){
         
         var spectrum = fourier.analyze();  
         var magnification = map(amplitude.getLevel(),0,1,0.9,1.1)
+        var spacingY = ceil(map(amplitude.getLevel(),0,1,75,100))
+        var spacingX = ceil(map(amplitude.getLevel(),0,1,50,70))
+        
+        
+    
         scale(magnification); 
 
-        for(var x=windowWidth; x>20;x=x-50){
-            for(var y=windowHeight+200; y>0; y=y-75){
+        for(var x=windowWidth; x>20;x=x-spacingX){
+            for(var y=windowHeight+200; y>0; y=y-spacingY){
                 // transform y to index respective to fourier array
                 let index = map(y,windowHeight,0,0,1024)
                 index = ceil(index);

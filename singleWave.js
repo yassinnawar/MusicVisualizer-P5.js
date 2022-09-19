@@ -6,7 +6,8 @@ function SingleWave() {
 	this.draw = function() {
 		push();
 		noFill();
-		stroke(255, 0, 0);
+		stroke(redLevel, greenLevel, blueLevel);
+        
 		strokeWeight(2);
 		beginShape();
 		wave = fourier.waveform();

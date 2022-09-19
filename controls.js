@@ -60,13 +60,21 @@ function Controls(){
     
         
     this.updateButtons = function(){
-         if (mouseX > windowWidth/2)
+         if (mouseX > windowWidth/3)
           {
               this.hideAll();
           }
         else if (vis.selected.name == "Circle"){
             this.hideAll();
-            circleGui.show()
+            circleGui.show();
+        }
+        else if (vis.selected.name == "Particles"){
+            this.hideAll();
+            particlesGui.show();
+        }
+        else if (vis.selected.name == "Single Wave"){
+            this.hideAll();
+            waveGui.show();
         }
         else {
             this.hideAll();
@@ -76,6 +84,8 @@ function Controls(){
 
     this.hideAll = function(){
         circleGui.hide();
+        particlesGui.hide();
+        waveGui.hide()
     }
 }
 
