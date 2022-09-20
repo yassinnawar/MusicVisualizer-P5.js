@@ -1,5 +1,5 @@
 function Squares(){
-    this.name ="squares"
+    this.name ="Squares"
     this.rows = 10;
     this.columns = 10;
 

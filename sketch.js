@@ -63,7 +63,7 @@ function setup(){
     vis.add(new NeonCircles());
     vis.add(new Radial());
     vis.add(new Squares());
-    vis.add(new Custom2());
+    vis.add(new Mirror());
     vis.add(new Particles());
     
     

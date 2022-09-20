@@ -32,7 +32,6 @@ function Circle(){
         //Scale Down the drawing when beat increases
         var magnification = map(amplitude.getLevel(),0,1,1,3)
         //number of vertical rectangles from center
-        var n =1024; 
 
         push();
         //Check Direction
@@ -45,11 +44,11 @@ function Circle(){
             strokeWeight(8)
             ellipse(0,0,this.diameter,this.diameter);
             pop();
-            for(var i = 0; i<n;i++){
+            for(var i = 0; i<spectrum.length;i++){
                 stroke(0);
-                rotate(PI/512);
+                rotate(PI/340);
                 fill(this.maxRed,this.maxGreen,this.maxBlue);
-                var barHeight = map(spectrum[i],0,255,0,this.maxLength);
+                var barHeight = map(spectrum[i],0,255,0,this.maxLength-200);
                 rect(-this.radius - barHeight,0,barHeight,this.barWidth);
             }
             pop();
@@ -67,10 +66,10 @@ function Circle(){
             strokeWeight(8)
             ellipse(0,0,newDiameter,newDiameter);
             pop();
-            for(var i = 0; i<n;i++){
+            for(var i = 0; i<spectrum.length;i++){
                 fill(255);
                 stroke(0);
-                rotate(PI/512);
+                rotate(PI/340);
                 fill(this.maxRed,this.maxGreen,this.maxBlue);
                 var barHeight = map(spectrum[i],0,255,0,newRadius-50);
                 rect(-newRadius,0 ,barHeight,this.barWidth);      
