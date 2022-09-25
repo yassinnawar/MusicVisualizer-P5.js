@@ -38,7 +38,7 @@ function preload(){
 // input = createFileInput(handleFile);  
 //    input.size(400,400);
 //    var sound = new SoundFile
-    sound = loadSound('assets/dieforyou2.mp3');
+    sound = loadSound('assets/dieforyou.mp3');
 }
 
 
@@ -65,6 +65,10 @@ function setup(){
     vis.add(new Squares());
     vis.add(new Mirror());
     vis.add(new Particles());
+    s= new Stars()
+    vis.add(s);
+    s.createStars();
+    
     
     
 

@@ -14,7 +14,7 @@ function Controls(){
 		if(keycode == 32){
 			this.menuDisplayed = !this.menuDisplayed;
 		}
-		if(keycode > 48 && keycode < 57){
+		if(keycode > 48 && keycode < 58){
 			var visNumber = keycode - 49;
 			vis.selectVisual(vis.visuals[visNumber].name); 
 		}
