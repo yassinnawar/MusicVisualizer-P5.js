@@ -1,6 +1,4 @@
 function Radial(){
-    
-    //add gui to control drawing shape for different visuals
     this.name = "Radial Shapes";
     clear();
     push();
@@ -8,7 +6,8 @@ function Radial(){
     
     this.draw = function() {
     push();
-    background(0)
+    angleMode(RADIANS);
+    background(0);
 	translate(windowWidth / 2, windowHeight / 2);
 	level = amplitude.getLevel();
 	fourier.analyze();
@@ -19,7 +18,7 @@ function Radial(){
 
 	var mapMid = map(mid, 0, 255, -100, 200);
 	var scaleMid = map(mid, 0, 255, 1, 1.5);
-
+    
 	var mapTreble = map(treble, 0, 255, 200, 350);
 	var scaleTreble = map(treble, 0, 255, 0, 1);
 
@@ -34,9 +33,7 @@ function Radial(){
 	radius = 100;
 
 	for (i = 0; i < pieces; i += 0.1) {
-
 		rotate(TWO_PI / (pieces / 2));
-
 		noFill();
 
 		/*----------  BASS  ----------*/
@@ -46,7 +43,7 @@ function Radial(){
 		strokeWeight(0.5);
 		polygon(mapbass + i, mapbass - i, mapMouseXbass * i, 3);
 		pop();
-
+        
 		/*----------  MID  ----------*/
 		push();
 		stroke(0,100,100);
@@ -66,7 +63,7 @@ function Radial(){
         pop();
 }
 
-
+    
 function polygon(x, y, radius, npoints) {
 	var angle = TWO_PI / npoints;
 	beginShape();

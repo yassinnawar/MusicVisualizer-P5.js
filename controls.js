@@ -54,7 +54,7 @@ function Controls(){
     this.checkCircle = function(){
          if(vis.selected.name == 'circle')
              {
-                 vis.selected.bool = !vis.selected.bool
+//                 vis.selected.bool = !vis.selected.bool
              }
     }
     
@@ -72,9 +72,13 @@ function Controls(){
             this.hideAll();
             particlesGui.show();
         }
-        else if (vis.selected.name == "Single Wave"){
+        else if (vis.selected.name == "Single WaveForm"){
             this.hideAll();
             waveGui.show();
+        }
+        else if(vis.selected.name == "Frequency/Amplitude Expander"){
+            this.hideAll();
+            expandingShapesGui.show();
         }
         else {
             this.hideAll();
@@ -86,6 +90,8 @@ function Controls(){
         circleGui.hide();
         particlesGui.hide();
         waveGui.hide()
+        expandingShapesGui.hide();
+        
     }
 }
 

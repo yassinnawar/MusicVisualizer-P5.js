@@ -6,7 +6,7 @@ var amplitude;
 var input;
 
 
-var circleGui;
+//Colours GUI Globals
 var redLevel = 100;
 var redLevelMin = 0;
 var redLevelMax = 255;
@@ -19,25 +19,30 @@ var blueLevel = 200;
 var blueLevelMin = 0;
 var blueLevelMax = 255;
 var blueLevelStep = 1;
-var myColor = [255, 255, 255];
-var direction =0;
-var directionMin=0;
-var directionMax=1;
-var directionStep=1;
 
+var circleGui;
+var myColor = [255, 255, 255];
 
 var particlesGui;
 var shape = ["circle","square"]
 
 var waveGui;
 
+var expandingShapesGui;
+var amplitudePower = 5;
+var frequencyPower = 1;
+var amplitudePowerMin = 5;
+var amplitudePowerMax = 15;
+var frequencyPowerMin = 1;
+var frequencyPowerMax = 5;
+var lineWidth = 0.5;
+var lineWidthMin = 0.25;
+var lineWidthMax = 5;
+var lineWidthStep = 0.25;
 
 
 
 function preload(){
-// input = createFileInput(handleFile);  
-//    input.size(400,400);
-//    var sound = new SoundFile
     sound = loadSound('assets/dieforyou.mp3');
 }
 
@@ -57,8 +62,8 @@ function setup(){
     
     //create a new visualisation container and add visualisations
     vis = new VisualContainer();
-    vis.add(new SingleWave());
-    vis.add(new Wave());
+    vis.add(new SingleWave()); // 1
+    vis.add(new SpiralWave()); // 2
     vis.add(new Circle());
     vis.add(new NeonCircles());
     vis.add(new Radial());
@@ -74,7 +79,7 @@ function setup(){
 
     //create GUIs and add their globals then hide them upon launch
     circleGui = createGui("Circle Settings");
-    circleGui.addGlobals("myColor","redLevel","greenLevel","blueLevel","direction"); 
+    circleGui.addGlobals("redLevel","greenLevel","blueLevel"); 
     circleGui.hide();
     
     particlesGui = createGui("Particle Settings")
@@ -86,6 +91,10 @@ function setup(){
     waveGui.hide();
     
 
+    expandingShapesGui = createGui("Expanding Settings");
+    expandingShapesGui.addGlobals("redLevel","greenLevel","blueLevel","lineWidth",
+                                  "amplitudePower","frequencyPower");
+    expandingShapesGui.hide();
 }
 
 function draw(){
@@ -94,25 +103,10 @@ function draw(){
         vis.selected.draw();
         controls.draw();
         controls.updateButtons();
-//        input.hide();
     } 
-//    else{
-//        console.log("Please load file")
-//        input.position(windowWidth/2, windowHeight/2);
-////        alert("Please Load Sound Correctly.");
-//    }
 
 }
-    
-function handleFile(file) {
-    print(file);
-    if (file.type === 'audio') {
-        sound = loadSound(file.data)
-    } else {
-        sound = null;
-        alert("Please Load Sound Correctly.");
-    }
-}
+
 
 function mouseClicked(){
 	controls.mousePressed();

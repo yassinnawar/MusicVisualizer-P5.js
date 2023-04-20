@@ -10,7 +10,6 @@ function Star(){
     this.display = function(){
         spectrum = fourier.analyze();
         var r = ceil(random(0,spectrum.length/4))
-        console.log(r)
         speedstar = map(amplitude.getLevel(), 0, 1, 3, 400);
         c = map(amplitude.getLevel(), 0, 1, 0, 255);
         var sx = map(this.x/this.z/2, -1, 1, -windowWidth, windowWidth);
