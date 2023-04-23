@@ -1,7 +1,6 @@
 function SpiralWave(){
     this.name = "Spiral WaveForm";
-    push();
-
+    
     this.draw = function(){
         var w = fourier.waveform();
         push();
@@ -25,5 +24,4 @@ function SpiralWave(){
         }
         pop();  
     }
-    pop();
 }

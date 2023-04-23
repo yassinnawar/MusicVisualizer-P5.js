@@ -1,8 +1,6 @@
 function Radial(){
-    this.name = "Radial Shapes";
-    clear();
+    this.name = "Play With Mouse";
     push();
-    
     
     this.draw = function() {
     push();
@@ -18,10 +16,8 @@ function Radial(){
 
 	var mapMid = map(mid, 0, 255, -100, 200);
 	var scaleMid = map(mid, 0, 255, 1, 1.5);
-    
 	var mapTreble = map(treble, 0, 255, 200, 350);
 	var scaleTreble = map(treble, 0, 255, 0, 1);
-
 	var mapbass = map(bass, 0, 255, 50, 200);
 	var scalebass = map(bass, 0, 255, 0.05, 1.2);
 
@@ -31,7 +27,6 @@ function Radial(){
 
 	pieces = 20;
 	radius = 100;
-
 	for (i = 0; i < pieces; i += 0.1) {
 		rotate(TWO_PI / (pieces / 2));
 		noFill();
@@ -73,7 +68,7 @@ function polygon(x, y, radius, npoints) {
 		vertex(sx, sy);
 	}
 	endShape(CLOSE);
-}
+};
     
     pop();
 }

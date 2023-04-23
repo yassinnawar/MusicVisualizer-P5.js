@@ -11,7 +11,6 @@ function Stars(){
     }
     
     this.draw = function(){
-        
         push();
         background(0)
         translate(windowWidth/2,windowHeight/2);

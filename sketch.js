@@ -5,17 +5,16 @@ var fourier;
 var amplitude;
 var input;
 
-
 //Colours GUI Globals
-var redLevel = 100;
+var redLevel = 255;
 var redLevelMin = 0;
 var redLevelMax = 255;
 var redLevelStep = 1;
-var greenLevel = 60;
+var greenLevel = 255;
 var greenLevelMin = 0;
 var greenLevelMax = 255;
 var greenLevelStep = 1;
-var blueLevel = 200;
+var blueLevel = 255;
 var blueLevelMin = 0;
 var blueLevelMax = 255;
 var blueLevelStep = 1;
@@ -24,7 +23,7 @@ var circleGui;
 var myColor = [255, 255, 255];
 
 var particlesGui;
-var shape = ["circle","square"]
+var shape = ["circle","square"];
 
 var waveGui;
 
@@ -41,9 +40,15 @@ var lineWidthMax = 5;
 var lineWidthStep = 0.25;
 
 
-
 function preload(){
-    sound = loadSound('assets/dieforyou.mp3');
+//    sound = loadSound('assets/wegz.mp3');
+    
+//    try {
+        sound = loadSound('assets/remix.mp3');
+//    }
+//    catch(err) {
+//        console.log(err)
+//    }
 }
 
 
@@ -74,9 +79,6 @@ function setup(){
     vis.add(s);
     s.createStars();
     
-    
-    
-
     //create GUIs and add their globals then hide them upon launch
     circleGui = createGui("Circle Settings");
     circleGui.addGlobals("redLevel","greenLevel","blueLevel"); 
@@ -90,21 +92,26 @@ function setup(){
     waveGui.addGlobals("redLevel","greenLevel","blueLevel");
     waveGui.hide();
     
-
     expandingShapesGui = createGui("Expanding Settings");
     expandingShapesGui.addGlobals("redLevel","greenLevel","blueLevel","lineWidth",
                                   "amplitudePower","frequencyPower");
     expandingShapesGui.hide();
 }
 
+
 function draw(){
     if(sound){
         background(0);
         vis.selected.draw();
         controls.draw();
-        controls.updateButtons();
-    } 
-
+        controls.updateGUIVisibility();
+    }
+//    else {
+//        background(255,0,0)
+//        stroke(255,255,255)
+//        textSize(34);
+//        text("Error Loading Sound File!", windowWidth/2, windowHeight/2);
+//    }
 }
 
 
@@ -123,6 +130,5 @@ function windowResized(){
 	if(vis.selected.hasOwnProperty('onResize')){
 		vis.selected.onResize();
 	}
+    controls.draw();
 }
-
-

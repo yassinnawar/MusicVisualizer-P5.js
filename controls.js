@@ -1,15 +1,27 @@
 function Controls(){
-	
 	this.menuDisplayed = false;
 	this.playbackButton = new PlaybackButton();
-    
 	this.mousePressed = function(){
-         if(!this.playbackButton.playButtonPressed() && (mouseX>2*windowWidth/3)){
-                 var fs = fullscreen();
-			     fullscreen(!fs);
-             }
-        };
+        if(!this.playbackButton.playButtonPressed() && (mouseX>2*windowWidth/3)){
+            var fs = fullscreen();
+			 fullscreen(!fs);
+        }
+    };
 
+    this.draw = function(){
+        push();
+        var fontSizeRelativeToScreenSize = floor(windowHeight/100) +18
+//        var fontSizeRelativeToScreenSize = floor(map(h,0,windowHeight,14,36));
+        console.log(fontSizeRelativeToScreenSize);
+        textSize(fontSizeRelativeToScreenSize);
+		this.playbackButton.draw();
+		if(this.menuDisplayed){
+			
+			this.drawMenu();
+		}
+		pop();
+	};
+    
 	this.keyPressed = function(keycode){
 		if(keycode == 32){
 			this.menuDisplayed = !this.menuDisplayed;
@@ -19,80 +31,52 @@ function Controls(){
 			vis.selectVisual(vis.visuals[visNumber].name); 
 		}
         else {
-            console.log("Visual doesn't exist")
+            console.log("Visual doesn't exist");
         }
-	};
-
-	this.draw = function(){
-        push();
-        strokeWeight(3)
-        stroke(255,255,255)
-        fill(0,0,0)
-        textSize(34);
-		this.playbackButton.draw();
-		if(this.menuDisplayed){
-			text("Choose a Visualisation:", 50, 100);
-			this.drawMenu();
-		}
-		pop();
 	};
 
 	this.drawMenu = function(){
         push();
+        var rowHeight = windowWidth/20 ;
+        strokeWeight(3);
+        stroke(255,255,255);
+        fill(0,0,0);
+        text("Choose a Visualisation:", 50, rowHeight);
 		for(var i = 0; i < vis.visuals.length; i++){
-			var yLoc = 150  + i*50;
-            textSize(30);
-            strokeWeight(3)
-            stroke(255,255,255)
-            fill(0,0,0)
+			var yLoc = 2*rowHeight  + i*rowHeight;
 			text((i+1) + ": " +vis.visuals[i].name, 100, yLoc);
 		}
-          pop();
+        pop();
 	};
-    
-
-    this.checkCircle = function(){
-         if(vis.selected.name == 'circle')
-             {
-//                 vis.selected.bool = !vis.selected.bool
-             }
-    }
-    
         
-    this.updateButtons = function(){
-         if (mouseX > windowWidth/3)
-          {
-              this.hideAll();
-          }
+    this.updateGUIVisibility = function(){
+        if (mouseX > windowWidth/3) this.hideGUIs();
+          
         else if (vis.selected.name == "Circle"){
-            this.hideAll();
+            this.hideGUIs();
             circleGui.show();
         }
         else if (vis.selected.name == "Particles"){
-            this.hideAll();
+            this.hideGUIs();
             particlesGui.show();
         }
         else if (vis.selected.name == "Single WaveForm"){
-            this.hideAll();
+            this.hideGUIs();
             waveGui.show();
         }
         else if(vis.selected.name == "Frequency/Amplitude Expander"){
-            this.hideAll();
+            this.hideGUIs();
             expandingShapesGui.show();
         }
         else {
-            this.hideAll();
+            this.hideGUIs();
         }
-    }
+    };
 
-
-    this.hideAll = function(){
+    this.hideGUIs = function(){
         circleGui.hide();
         particlesGui.hide();
-        waveGui.hide()
+        waveGui.hide();
         expandingShapesGui.hide();
-        
-    }
-}
-
-
+    };
+};

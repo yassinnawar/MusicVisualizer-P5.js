@@ -1,53 +1,53 @@
 function Squares(){
     this.name ="Squares"
-    this.rows = 10;
-    this.columns = 10;
-
+    this.step = 0;
+    
+    
+    this.Red= redLevel;
+    this.Green = greenLevel;
+    this.Blue = blueLevel;
+    this.x = (windowWidth / 2);
+    this.y = (windowHeight / 2); 
     
     this.draw = function(){
-//        push(); 
-        var spectrum = fourier.analyze();
-        var cellNumber = 1
-        var cellWidth = windowWidth / this.columns;
-        var cellHeight = windowHeight / this.rows;
-        // for loops for drawing squares
-        for(let r = 1; r <= this.rows ; r++){
+        push();
+        background(0);
+        angleMode(RADIANS);
+        var spectrum = fourier2.analyze();
+        translate(windowWidth/2, windowHeight/2);
+        var mag = map(amplitude.getLevel(),0,1,0.5,1.25);
+        scale(mag);
+        noFill();
+        strokeWeight(7*cos(this.step)+13);
+        for (i = 5; i < spectrum.length; i+=5){
+            push();
+            if (i%10 == 0) stroke("black");
+            else stroke(redLevel,greenLevel,blueLevel);
+            fourier.analyze();
+            var bass = fourier.getEnergy("bass");
+	        var treble = fourier.getEnergy("treble");
+	        var mid = fourier.getEnergy("mid");
+            var mapbass = map(bass, 0, 255, 0, PI/2);
+            var maptreble = map(treble, 0, 255, 0, PI/2);
+            var mapmid = map(mid, 0, 255, 0, -PI/2);
+            var value = mapbass + mapmid + maptreble;
             
-            for(let c = 0 ; c <= this.columns; c++){
-          
-                var x = ((c / this.rows) * windowWidth); 
-                var y = windowHeight - (r/this.columns  * windowHeight)
-                var colour = spectrum[ceil((r+c)/2)*cellNumber]
-                
-                if(c<2){
-                    fill(colour,0,0)
-                }  
-                else if(c<4){
-                    fill(0,colour,0)
-                }
-                else if(c<6){
-                    fill(0,0,colour)
-                }
-                else if(c<8){
-                    fill(colour,0,colour)
-                }
-                else {
-                    fill(colour,colour,0)
-                }
-                
-                rect(x, y, cellWidth, cellHeight);
-                // printing cell numbers on screen
-//                fill(255)
-//                textSize(26);
-//                text("cell no"+(cellNumber) ,x,y,cellWidth,cellHeight);
-                
-                cellNumber+=1
+            rotate(value);
+            beginShape();
+            for (let angle = 0; angle < TWO_PI; angle += TWO_PI/3){
+                var index = floor(map(i,5,400,0,spectrum.length));
+                var a = map(spectrum[i],0,255,0,PI/2);
+                rotate(a);
+                let x = cos(angle) * i;
+                let y = sin(angle) * i;
+                vertex(x, y);
             }
-            // correct cellNumber after each coloumn loop
-             cellNumber-=1   
+            endShape(CLOSE);
+            pop();
         }
-        
-//        pop();
-        }
-    
+
+        pop();
     }
+ 
+}
+
