@@ -3,14 +3,14 @@ function SingleWave() {
     this.Red= redLevel;
     this.Green = greenLevel;
     this.Blue = blueLevel;
-    this.x = (windowWidth / 2);
-    this.y = (windowHeight / 2); 
+    this.s = strokeLevel;
+
     
 	this.draw = function() {
 		push();
         noFill();
         stroke(this.Red, this.Green, this.Blue);
-        strokeWeight(2);
+        strokeWeight(this.s);
         beginShape();
         wave = fourier.waveform();
         for (i = 0; i < wave.length; i++) {
@@ -20,5 +20,13 @@ function SingleWave() {
         }
         endShape();
 		pop();
+        this.update();
 	};
+    
+    this.update = function(){
+        this.Red= redLevel;
+        this.Green = greenLevel;
+        this.Blue = blueLevel;
+        this.s = strokeLevel;
+    }
 };

@@ -1,5 +1,5 @@
 function Stars(){
-
+    this.name = "Sky Full of Stars";
     var stars = [];
     var spectrum = fourier.analyze();
    

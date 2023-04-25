@@ -1,21 +1,21 @@
 //container function for the visualisations
 function VisualContainer(){
-	this.visuals = [];
-	this.selected = null;
+	this.visualsArray = [];
+	this.currentVisual = null;
 
 
-	this.add = function(vis){
-		this.visuals.push(vis);
-		if(this.selected == null){
-			this.selectVisual(vis.name);
+	this.add = function(visual){
+		this.visualsArray.push(visual);
+		if(this.currentVisual == null){
+			this.setVisual(visual.name);
 		}
 	};
 
-	this.selectVisual = function(visName){
-		for(var i = 0; i < this.visuals.length; i++){
-			if(visName == this.visuals[i].name){
-				this.selected = this.visuals[i];
+	this.setVisual = function(visualName){
+		for(var i = 0; i < this.visualsArray.length; i++){
+			if(visualName == this.visualsArray[i].name){
+				this.currentVisual = this.visualsArray[i];
 			}
 		}
 	};
-}
+};

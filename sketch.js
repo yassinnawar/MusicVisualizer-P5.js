@@ -1,5 +1,5 @@
 var controls = null;
-var vis = null;
+var visualsContainer = null;
 var sound = null;
 var fourier;
 var amplitude;
@@ -18,8 +18,11 @@ var blueLevel = 255;
 var blueLevelMin = 0;
 var blueLevelMax = 255;
 var blueLevelStep = 1;
+var strokeLevel = 2;
+var strokeLevelMin = 0.5;
+var strokeLevelMax = 7;
+var strokeLevelStep = 0.5;
 
-var circleGui;
 var myColor = [255, 255, 255];
 
 var particlesGui;
@@ -39,18 +42,16 @@ var lineWidthMin = 0.25;
 var lineWidthMax = 5;
 var lineWidthStep = 0.25;
 
+var overlappingCirclesGUI;
+
+var illusionTriangleGUI;
+
+var hideLaunchMessage = false;
+
 
 function preload(){
-//    sound = loadSound('assets/wegz.mp3');
-    
-//    try {
-        sound = loadSound('assets/remix.mp3');
-//    }
-//    catch(err) {
-//        console.log(err)
-//    }
+        sound = loadSound('assets/TheColorViolet.mp3');
 }
-
 
 function setup(){
     createCanvas(windowWidth, windowHeight);
@@ -66,69 +67,79 @@ function setup(){
     amplitude.setInput(sound);
     
     //create a new visualisation container and add visualisations
-    vis = new VisualContainer();
-    vis.add(new SingleWave()); // 1
-    vis.add(new SpiralWave()); // 2
-    vis.add(new Circle());
-    vis.add(new NeonCircles());
-    vis.add(new Radial());
-    vis.add(new Squares());
-    vis.add(new Mirror());
-    vis.add(new Particles());
-    s= new Stars()
-    vis.add(s);
+    visualsContainer = new VisualContainer();
+    visualsContainer.add(new SingleWave()); // 1
+    visualsContainer.add(new SpiralWave()); // 2
+    visualsContainer.add(new OverlappingCircles());
+    visualsContainer.add(new Web());
+    visualsContainer.add(new Radial());
+    visualsContainer.add(new Triangle());
+    visualsContainer.add(new Mirror());
+    visualsContainer.add(new Particles());
+    s= new Stars();
+    visualsContainer.add(s);
     s.createStars();
     
-    //create GUIs and add their globals then hide them upon launch
-    circleGui = createGui("Circle Settings");
-    circleGui.addGlobals("redLevel","greenLevel","blueLevel"); 
-    circleGui.hide();
     
     particlesGui = createGui("Particle Settings")
     particlesGui.addGlobals("shape");
     particlesGui.hide()
     
-    waveGui = createGui("Wave Settings")
-    waveGui.addGlobals("redLevel","greenLevel","blueLevel");
-    waveGui.hide();
+//    waveGui = createGui("Wave Settings")
+//    waveGui.addGlobals("redLevel","greenLevel","blueLevel");
+//    waveGui.hide();
     
     expandingShapesGui = createGui("Expanding Settings");
     expandingShapesGui.addGlobals("redLevel","greenLevel","blueLevel","lineWidth",
                                   "amplitudePower","frequencyPower");
     expandingShapesGui.hide();
+    
+    ColorGUI = createGui("Color Settings")
+    ColorGUI.addGlobals("redLevel","greenLevel","blueLevel","strokeLevel");
+    ColorGUI.hide();
 }
 
 
 function draw(){
     if(sound){
         background(0);
-        vis.selected.draw();
+        visualsContainer.currentVisual.draw();
         controls.draw();
-        controls.updateGUIVisibility();
+        controls.updateGUIVisibility();    
+        hideText();  
     }
-//    else {
-//        background(255,0,0)
-//        stroke(255,255,255)
-//        textSize(34);
-//        text("Error Loading Sound File!", windowWidth/2, windowHeight/2);
-//    }
+    else console.log("error loading Sound File!")
 }
-
 
 function mouseClicked(){
 	controls.mousePressed();
 }
 
-
 function keyPressed(){
 	controls.keyPressed(keyCode);
 }
 
-
 function windowResized(){
 	resizeCanvas(windowWidth, windowHeight);
-	if(vis.selected.hasOwnProperty('onResize')){
-		vis.selected.onResize();
+	if(visualsContainer.currentVisual.hasOwnProperty('onResize')){
+		visualsContainer.currentVisual.onResize();
 	}
     controls.draw();
+}
+
+function mouseMoved() {
+    hideLaunchMessage = true;
+}
+
+function hideText(){
+    if(!hideLaunchMessage){
+        push();
+            strokeWeight(3);
+            stroke(255,255,255);
+            fill(0,0,0);
+            var fontSizeRelativeToScreenSize = floor(windowHeight/100) +18
+            textSize(fontSizeRelativeToScreenSize);
+            text("Press 1 - 9 to switch between visuals or spacebar for menu", windowWidth/4, windowHeight/2);
+        pop();
+        }
 }

@@ -1,5 +1,5 @@
 function Radial(){
-    this.name = "Play With Mouse";
+    this.name = "Radial Shapes";
     push();
     
     this.draw = function() {
