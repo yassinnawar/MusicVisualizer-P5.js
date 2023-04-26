@@ -62,7 +62,7 @@ function Controls(){
             this.hideGUIs();
             ColorGUI.show();
         }
-        else if(visualsContainer.currentVisual.name == "Frequency/Amplitude Expander"){
+        else if(visualsContainer.currentVisual.name == "Frequency/Amplitude Web"){
             this.hideGUIs();
             expandingShapesGui.show();
         }
@@ -79,7 +79,6 @@ function Controls(){
         }
     };
 
-    
     this.hideGUIs = function(){
         particlesGui.hide();
         ColorGUI.hide();
