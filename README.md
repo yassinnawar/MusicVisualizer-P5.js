@@ -25,17 +25,19 @@ Visual 5
 <img width="1512" alt="Screenshot 2023-04-24 at 5 12 49 AM" src="https://github.com/yassinnawar/MusicVisualizer-P5.js/assets/30075771/cbf7702c-98bc-47b1-a233-4c8efe4872dc">
 
 
-Visual 5
+Visual 6
 <img width="1512" alt="Screenshot 2023-04-24 at 5 14 01 AM" src="https://github.com/yassinnawar/MusicVisualizer-P5.js/assets/30075771/f8b3743f-3291-4e19-a261-ba1193721d57">
 <img width="1512" alt="Screenshot 2023-04-24 at 5 13 28 AM" src="https://github.com/yassinnawar/MusicVisualizer-P5.js/assets/30075771/5694cc8b-5710-4fc5-a1ca-473119faa2db">
 
 
-Visual 6
+Visual 7
 <img width="1512" alt="Screenshot 2023-04-24 at 5 14 08 AM" src="https://github.com/yassinnawar/MusicVisualizer-P5.js/assets/30075771/edc9114d-4cc9-43b3-b2eb-6a2d96d7ab32">
 <img width="1512" alt="Screenshot 2023-04-24 at 5 14 12 AM" src="https://github.com/yassinnawar/MusicVisualizer-P5.js/assets/30075771/df3e0853-d4b6-4a59-be79-9a3034489b18">
 
 
-Visual 7 
+Visual 8
 <img width="1512" alt="Screenshot 2023-04-24 at 5 14 19 AM" src="https://github.com/yassinnawar/MusicVisualizer-P5.js/assets/30075771/9ca71360-5b73-4dba-a1f7-ee477d26bebd">
 
-Visual 8 
+
+Visual 9
+<img width="1512" alt="Screenshot 2023-06-08 at 1 45 19 AM" src="https://github.com/yassinnawar/MusicVisualizer-P5.js/assets/30075771/308be3e1-7849-4617-853a-408dae9520de">
